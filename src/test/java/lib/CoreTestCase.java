@@ -23,8 +23,8 @@ public class CoreTestCase extends TestCase {
     protected void setUp() throws Exception {
         super.setUp();
         DesiredCapabilities capabilities = this.getCapabilitiesByPlatformEnv();
-        driver = new AndroidDriver(new URL(AppiumURL), capabilities);
-        //driver = this.getDriverByPlatformEnv(new URL(AppiumURL), capabilities);
+        //driver = new AndroidDriver(new URL(AppiumURL), capabilities);
+        driver = this.getDriverByPlatformEnv(new URL(AppiumURL), capabilities);
         this.rotateScreenPortrait();
     }
     @Override
@@ -66,16 +66,18 @@ public class CoreTestCase extends TestCase {
         }
         return capabilities;
     }
-   /* private AppiumDriver getDriverByPlatformEnv(String typeOfDriver) throws Exception
+   private AppiumDriver getDriverByPlatformEnv(String typeOfDriver) throws Exception
     {
         String platform = System.getenv("PLATFORM");
-        if (platform.equals(PLATFORM_ANDROID)) {
-            typeOfDriver = AndroidDriver;
-        } else if (platform.equals(PLATFORM_IOS)) {
+        if (platform.equals(PLATFORM_ANDROID))
+        {
+            typeOfDriver = AndroidDriver();
+        } else if (platform.equals(PLATFORM_IOS))
+        {
             typeOfDriver = IOSDriver;
         } else {
             throw new Exception("Cannot get run driver for platform from env variable. Platform value " + platform);
         }
         return getDriverByPlatformEnv(typeOfDriver);
-    }*/
+    }
 }
